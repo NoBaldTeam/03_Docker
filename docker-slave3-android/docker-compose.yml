@@ -1,0 +1,22 @@
+slave3:
+  image: itel_docker_slave_android:v1.1
+  container_name: docker-agent-android
+  restart: always
+  environment:
+    JAVA_OPTS: "-Djava.awt.headless=true"
+    JENKINS_URL: "http://10.250.1.89:8082/"
+    JENKINS_NAME: "docker-agent-android"
+    JENKINS_SECRET: "6e57e274695ecb5aedbd6f9f743b6f70b0c8c79cb8245637420958d4b3f829ca "
+  volumes:
+    - /home/apkserver/jenkins_slave3_android:/var/jenkins_home
+    - /usr/local/android-sdk-linux:/usr/local/android-sdk-linux
+    - /usr/local/android-ndk-r13:/usr/local/android-ndk-r13
+    - /usr/local/gradle-4.4:/usr/local/gradle-4.4
+    - /usr/local/jdk1.8.0_161:/usr/local/jdk1.8.0_161
+    - /etc/localtime:/etc/localtime
+    - /etc/timezone:/etc/timezone
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/bin/docker:/bin/docker
+    - /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
+    - /var/lib/docker:/var/lib/docker
+

@@ -1,0 +1,21 @@
+jenkins:
+  image: itel_jenkins_2.138.1:v1.0
+  container_name: jenkins89
+  restart: always
+  ports:
+    - 50000:50000
+    - 10.250.1.89:8082:8080
+  environment:
+    JAVA_OPTS: "-Djava.awt.headless=true"
+  volumes:
+    - /home/apkserver/jenkins_volume:/var/jenkins_home
+    - /usr/local/android-sdk-linux:/usr/local/android-sdk-linux
+    - /usr/local/android-ndk-r13:/usr/local/android-ndk-r13
+    - /usr/local/gradle-4.4:/usr/local/gradle-4.4
+    - /usr/local/jdk1.8.0_161:/usr/local/jdk1.8.0_161
+    - /etc/localtime:/etc/localtime
+    - /etc/timezone:/etc/timezone
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/bin/docker:/bin/docker
+    - /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
+    - /var/lib/docker:/var/lib/docker

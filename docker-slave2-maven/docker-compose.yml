@@ -1,0 +1,19 @@
+slave2:
+  image: itel_docker_slave_maven:v1.1
+  container_name: docker-agent-maven
+  restart: always
+  environment:
+    JAVA_OPTS: "-Djava.awt.headless=true"
+    JENKINS_URL: "http://10.250.1.89:8082/"
+    JENKINS_NAME: "docker-agent-maven"
+    JENKINS_SECRET: "c32402b8708e19521a185540be267c2f192344d9877ff6f2494e8279636c84a3"
+  volumes:
+    - /home/apkserver/jenkins_slave2_maven:/var/jenkins_home
+    - /usr/local/apache-maven-3.0:/usr/local/apache-maven-3.0
+    - /etc/localtime:/etc/localtime
+    - /etc/timezone:/etc/timezone
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/bin/docker:/bin/docker
+    - /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
+    - /var/lib/docker:/var/lib/docker
+
