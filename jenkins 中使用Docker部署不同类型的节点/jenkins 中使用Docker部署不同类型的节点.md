@@ -126,6 +126,7 @@ COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 ```
 　　如上Dockerfile编写完成后，执行：docker build -t  \${image name}:${version tag} . ;创建镜像，至此镜像创建完毕；我执行的命令为：``` docker build -t itel_docker_jenkins_2.138.1:v1.0 .```;完成后执行docker images 可查看到生成的镜像信息。
   [![jenkins images](http://pbdkyxc0r.bkt.clouddn.com/jenkins%20images.png "jenkins images")](http://pbdkyxc0r.bkt.clouddn.com/jenkins%20images.png "jenkins images")
+  
 #### 1.2 编写运行jenkins容器的编排YML文件
 　　如下是我编写的适合于我的环境的docker-compose.yml文件内容：
 关键几个点：(1)创建容器的镜像及版本；(2)容器名称；(3)暴露的端口；(3)环境变量定义；(4)挂载到容器的的目录及文件。
@@ -153,6 +154,7 @@ jenkins:
     - /var/lib/docker:/var/lib/docker
 ```
 　　编写好如上YAML文件后，在docker-compose.yml所在目录执行```docker-compose up -d```，便能启动容器，启动后执行：```docker  ps```就能看到容器的相关信息，然后打开定义的ip端口就能启动jenkins，首次启动jenkins容器需要输入一串随机的密码，执行```docker logs -f ${容器名称}```就能看到启动容器过程中的log信息，首次启动会输出该随机密码。
+  
  [![jenkins container](http://pbdkyxc0r.bkt.clouddn.com/jenkins%20container.png "jenkins container")](http://pbdkyxc0r.bkt.clouddn.com/jenkins%20container.png "jenkins container")
  [![](http://pbdkyxc0r.bkt.clouddn.com/jenkins%20%E7%95%8C%E9%9D%A2.png)](http://pbdkyxc0r.bkt.clouddn.com/jenkins%20%E7%95%8C%E9%9D%A2.png)
 　　如上jenkins镜像及容器创建启动后，就能启动一个jenkins，启动jenkins后，可进行一些基础的配置：账户登录认证、插件安装、邮箱配置、环境变量配置、一些公共资源的配置。然后将部署该jenkins的docker容器相关的dockerfile、docker-compose.yml、以及挂载出来的jenkins-home文件夹备份；然后利用该三份备份。就能在别的docker环境下，执行2个命令就能快速的部署jenkins，还能保持jenkins的通用配置。
@@ -220,6 +222,7 @@ ENTRYPOINT ["jenkins-slave"]
 USER root
 ```
 　　如上Dockerfile文件编写完成后，在其所在目录执行```docker build -t ${docker images name}:${version tag} .```;便能创建镜像，我执行的命令是：```docker build -t itel_docker_slave_android:v1.0 .```,然后执行docker images 命令，就能看到创建镜像信息。
+  
   [![jenkins slave](http://pbdkyxc0r.bkt.clouddn.com/jenkins%20slave%20android.png "jenkins slave")](http://pbdkyxc0r.bkt.clouddn.com/jenkins%20slave%20android.png "jenkins slave")
 
 #### 2.2 编写运行节点容器的编排YML文件
