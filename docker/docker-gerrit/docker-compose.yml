@@ -1,0 +1,38 @@
+gerrit13:
+    image: itel_gerrit_2.15
+    restart: always
+    links:
+        - pg-gerrit13:db
+    ports:
+        - 10.250.115.113:8080:8080
+        - 29420:29418
+    volumes:
+        - /home/docker/workspace/gerrit13/gerrit_volume:/var/gerrit/review_site
+    environment:
+        - DATABASE_TYPE=postgresql
+        - DB_ENV_MYSQL_DB=reviewdb
+        - AUTH_TYPE=LDAP 
+        - LDAP_SERVER=ldap://ifaszdc01.transsion.com  
+        - LDAP_ACCOUNTBASE=DC=transsion,DC=com
+        - LDAP_USERNAME=gerrit@transsion.com
+        - LDAP_GROUPBASE=DC=transsion,DC=com
+        - LDAP_ACCOUNTFULLNAME=displayName
+        - LDAP_ACCOUNTEMAILADDRESS=mail
+        - LDAP_ACCOUNTSSHUSERNAME=sAMAccountName
+        - LDAP_GROUPNAME=cn
+        - SMTP_SERVER=itelmobile-com01b.mail.protection.partner.outlook.cn
+        - SMTP_SERVER_PORT=25 
+        - SMTP_USER=iapd.ib@itel-mobile.com
+        - SMTP_PASS=Talpa333
+        - SMTP_CONNECT_TIMEOUT=10sec 
+        - SMTP_FROM=iapd.ib@itel-mobile.com
+
+pg-gerrit13:
+    image: postgres
+    restart: always
+    ports:
+        - 5433:5432
+    environment:
+        - POSTGRES_USER=gerrit2
+        - POSTGRES_PASSWORD=gerrit
+        - POSTGRES_DB=reviewdb

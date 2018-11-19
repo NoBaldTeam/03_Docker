@@ -1,0 +1,17 @@
+jenkins:
+  image: itel_jenkins_2.60.3:v2.0
+  container_name: jenkins15
+  restart: always
+  ports:
+    - 50000:50000
+    - 10.250.115.115:8080:8080
+  environment:
+    JAVA_OPTS: "-Djava.awt.headless=true"
+  volumes:
+    - /home/docker/workspace/jenkins15/jenkins_volume:/var/jenkins_home
+    - /usr/local/android-sdk-linux:/usr/local/android-sdk-linux
+    - /usr/local/android-ndk-r13:/usr/local/android-ndk-r13
+    - /usr/local/gradle-4.4:/usr/local/gradle-4.4
+    - /mnt/APK_Test_Version:/mnt/APK_Test_Version
+    - /mnt/APK_Release_Version:/mnt/APK_Release_Version
+    - /work/workspace/jenkins/proj:/work/workspace/jenkins/proj
