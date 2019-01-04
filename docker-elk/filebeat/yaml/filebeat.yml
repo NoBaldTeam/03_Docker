@@ -1,0 +1,28 @@
+##################$$$###### Filebeat Configuration ############################
+#=========================== Filebeat prospectors =============================
+
+# List of prospectors to fetch data.
+filebeat.prospectors:
+
+#################mycat 8066#################
+- input_type: log
+  paths:
+    - /workspace/app/mycat/logs/*.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: mycat166
+      
+#################mysql 3306#################
+- input_type: log
+  paths:
+    - /var/lib/docker/containers/038dc3ae31c1669fd065a2b99e208f5bcbc25c548231a13c6a9d907d20c9ffbb/038dc3ae31c1669fd065a2b99e208f5bcbc25c548231a13c6a9d907d20c9ffbb-json.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: mysql166
+#----------------------------- Logstash output ---------------------------------
+output.logstash:
+  # Boolean flag to enable or disable the output module.
+  #enabled: true
+
+  # The Logstash hosts
+  hosts: ["10.250.115.164:5000"]

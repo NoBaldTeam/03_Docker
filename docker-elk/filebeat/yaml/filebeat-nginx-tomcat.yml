@@ -1,0 +1,101 @@
+##################$$$###### Filebeat Configuration ############################
+#=========================== Filebeat prospectors =============================
+
+# List of prospectors to fetch data.
+filebeat.prospectors:
+#------------------------------ Log prospector --------------------------------
+#- input_type: log
+#  paths:
+#    - /workspace/app/filebeat/logs/nginx160/*.log
+#  tail_files: true #文件末尾开始读取
+#  fields:
+#  document_type: nginx160
+
+#################tomcat 8080#################
+- input_type: log
+  paths:
+    - /workspace/app/tomcat/logs/*.txt
+    - /workspace/app/tomcat/logs/*.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: tomcat231-8080
+
+#################tomcat 8081#################
+- input_type: log
+  paths:
+    - /workspace/app/tomcat-stat-8081/logs/*.txt
+    - /workspace/app/tomcat-stat-8081/logs/*.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: tomcat231-stat-8081
+
+#################tomcat 8082#################
+- input_type: log
+  paths:
+    - /workspace/app/tomcat-advertisementBackend-8082/logs/*.txt
+    - /workspace/app/tomcat-advertisementBackend-8082/logs/*.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: tomcat231-advertisementbackend-8082
+
+#################tomcat 8083#################
+- input_type: log
+  paths:
+    - /workspace/app/tomcat-advertisement-8083/logs/*.txt
+    - /workspace/app/tomcat-advertisement-8083/logs/*.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: tomcat231-advertisement-8083
+      
+#################tomcat 8084#################
+- input_type: log
+  paths:
+    - /workspace/app/tomcat-app-8084/logs/*.txt
+    - /workspace/app/tomcat-app-8084/logs/*.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: tomcat231-app-8084
+
+#################tomcat 8085#################
+- input_type: log
+  paths:
+    - /workspace/app/tomcat-push-8085/logs/*.txt
+    - /workspace/app/tomcat-push-8085/logs/*.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: tomcat231-push-8085
+
+#################tomcat 8086#################
+- input_type: log
+  paths:
+    - /workspace/app/tomcat-statistics-8086/logs/*.txt
+    - /workspace/app/tomcat-statistics-8086/logs/*.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: tomcat231-statistics-8086
+
+#################tomcat 8087#################
+- input_type: log
+  paths:
+    - /workspace/app/tomcat-aicenter-8087/logs/*.txt
+    - /workspace/app/tomcat-aicenter-8087/logs/*.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: tomcat231-aicenter-8087
+
+#################tomcat 8088#################
+- input_type: log
+  paths:
+    - /workspace/app/tomcat-aicenter4android-8088/logs/*.txt
+    - /workspace/app/tomcat-aicenter4android-8088/logs/*.log
+  tail_files: true #文件末尾开始读取
+  fields:
+      document_type: tomcat231-aicenter4android-8088
+
+#----------------------------- Logstash output ---------------------------------
+output.logstash:
+  # Boolean flag to enable or disable the output module.
+  #enabled: true
+
+  # The Logstash hosts
+  hosts: ["10.250.115.164:5000"]
