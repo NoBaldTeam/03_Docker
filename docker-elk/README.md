@@ -1,8 +1,6 @@
 基于ELK的实时日志分析平台搭建
 ====
 
-[TOC]
-
 
 
 # 1. ELK介绍
@@ -145,17 +143,13 @@ output {
 ```
 docker-compose up -d
 ```
-如上部署具体文件存放在：
-```
-http://10.250.115.19/!/#cm/view/head/trunk/01%E5%B7%A5%E5%85%B7%E8%AF%95%E7%82%B9%E5%8F%8A%E5%BC%80%E5%8F%91/18-%E5%90%8E%E5%8F%B0%E7%8E%AF%E5%A2%83/ELK/ELK
-```
+如上部署具体文件存放在：当前git库
+
 
 # 4. 搭建filebeat节点收集日志
 filebeat节点采用直接运行可执行文件的方式去执行程序，检测日志文件的变化，然后上传变化到logstash。
-具体部署软件包存放在：
-```
-http://10.250.115.19/!/#cm/view/head/trunk/01%E5%B7%A5%E5%85%B7%E8%AF%95%E7%82%B9%E5%8F%8A%E5%BC%80%E5%8F%91/18-%E5%90%8E%E5%8F%B0%E7%8E%AF%E5%A2%83/ELK/filebeat
-```
+具体部署软件包存放在：当前git库
+
 将软件包存放到服务器/workspace/app/目录下。
 主要修改下yaml文件夹下的filebeat.yml文件：
 ```
